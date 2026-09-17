@@ -1,0 +1,16 @@
+# dsh-memory bundle patch.
+#
+# Inserted as a profile bundle layer over dsh-base. The row is a bare dual-face
+# plugin referenced by package name: the node half (exports ".") runs in the
+# host process and owns the memory folder, the GitHub credential and the sync
+# engine, while the `dsh.client` declaration in package.json makes the browser
+# half (exports "./client") load in the Web GUI and mount a memory panel into
+# the `sidebar.footer.action` slot.
+#
+# There is deliberately only one row: everything this plugin needs — the prompt
+# section, the `memory_*` tools, the loopback routes and the panel — is
+# registered from the plugin's own `apply()`, so uninstalling it leaves nothing
+# behind.
+- insert:
+    - id: memory
+      name: dsh-memory
